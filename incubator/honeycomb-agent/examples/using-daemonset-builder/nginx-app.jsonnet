@@ -27,7 +27,7 @@ local nginxDeployment =
 
 // Application service.
 local nginxService =
-  local nginxServicePort = servicePort.tcp(targetPort, targetPort);
+  local nginxServicePort = servicePort.new(targetPort, targetPort);
   service.new("my-nginx", podLabels, nginxServicePort) +
     service.mixin.spec.type("LoadBalancer") +
     service.mixin.metadata.labels(podLabels);

@@ -1,5 +1,4 @@
 local values = import "values.libsonnet";
-local redis = import "redis.libsonnet";
 local util = import "../util.libsonnet";
 
 if values.usePassword
@@ -7,10 +6,10 @@ then {
   apiVersion: "v1",
   kind: "Secret",
   metadata: {
-    name: redis.fullname,
+    name: values.fullname,
     namespace: values.namespace,
     labels: {
-      app: redis.fullname
+      app: values.fullname
     },
   },
   type: "Opaque",

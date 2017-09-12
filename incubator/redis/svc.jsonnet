@@ -1,15 +1,14 @@
 local values = import "values.libsonnet";
-local redis = import "redis.libsonnet";
 local util = import "../util.libsonnet";
 
 {
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: redis.fullname,
+    name: values.fullname,
     namespace: values.namespace,
     labels: {
-      app: redis.fullname,
+      app: values.fullname,
     },
   },
   [if values.metrics.enabled then "annotations"]: values.metrics.annotations,
@@ -22,7 +21,7 @@ local util = import "../util.libsonnet";
       }
     ],
     selector: {
-      app: redis.fullname,
+      app: values.fullname,
     },
   }
 }

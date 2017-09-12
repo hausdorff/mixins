@@ -1,4 +1,6 @@
 {
+  fullname: "redis-app",
+
   redisPassword: "foobar",
   namespace: "dev-alex",
   "image": "bitnami/redis:3.2.9-r2",

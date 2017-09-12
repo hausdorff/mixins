@@ -1,5 +1,4 @@
 local values = import "values.libsonnet";
-local redis = import "redis.libsonnet";
 local util = import "../util.libsonnet";
 
 if values.networkPolicy.enabled
@@ -7,16 +6,16 @@ then {
   kind: "NetworkPolicy",
   apiVersion: "networking.k8s.io/v1",
   metadata: {
-    name: redis.fullname,
+    name: values.fullname,
     namespace: values.namespace,
     labels: {
-      app: redis.fullname,
+      app: values.fullname,
     },
   },
   spec: {
     podSelector: {
       matchLabels: {
-        app: redis.fullname,
+        app: values.fullname,
       }
     },
     ingress:
@@ -32,7 +31,7 @@ then {
               {
                 podSelector: {
                   matchLabels: {
-                    [redis.fullname + "-client"]: "true"
+                    [values.fullname + "-client"]: "true"
                   }
                 }
               },

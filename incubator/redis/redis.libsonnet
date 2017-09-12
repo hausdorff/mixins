@@ -1,0 +1,3 @@
+{
+  fullname: "redis-app"
+}

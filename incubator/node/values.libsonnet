@@ -1,0 +1,72 @@
+{
+  name:: "node-app",
+
+  ## Bitnami node image version
+  ## ref: https://hub.docker.com/r/bitnami/node/tags/
+  ##
+  image:: "bitnami/node:8.4.0-r1",
+
+  ## Git repository http/https
+  ##
+  repository::  "https://github.com/jbianquetti-nami/simple-node-app.git",
+
+  ## Git repository revision to checkout
+  ##
+  revision:: "26679f6",
+
+  ## Specify a imagePullPolicy
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  imagePullPolicy:: "IfNotPresent",
+
+  ##
+  ## MariaDB chart configuration
+  ##
+  mariadb:: {
+    ## MariaDB admin password
+    ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#setting-the-root-password-on-first-run
+    ## mariadbRootPassword:
+
+    ## Enable persistence using Persistent Volume Claims
+    ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+    ##
+    persistence:: {
+      enabled:: true,
+      ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
+      ## Default: volume.alpha.kubernetes.io/storage-class: default
+      ##
+      # storageClass:
+      accessMode:: "ReadWriteOnce",
+      size:: "8Gi",
+    },
+  },
+
+  ## Kubernetes configuration
+  ## For minikube, set this to NodePort, elsewhere use LoadBalancer
+  ##
+  serviceType:: "LoadBalancer",
+
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:: {
+    enabled:: false,
+    path:: "/app/data",
+    ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
+    ## Default: volume.alpha.kubernetes.io/storage-class: default
+    ##
+    # storageClass:
+    accessMode:: "ReadWriteOnce",
+    size:: "1Gi",
+  },
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:: {
+    requests: {
+      memory: "512Mi",
+      cpu: "300m",
+    },
+  },
+}

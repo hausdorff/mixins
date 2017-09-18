@@ -36,7 +36,7 @@
     ]
   },
   "networkPolicy": {
-    "enabled": false,
+    "enabled": true,
     "allowExternal": true
   },
   "nodeSelector": {
